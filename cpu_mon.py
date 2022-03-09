@@ -21,8 +21,8 @@ import time
 Declare some global variables that are going to be passed around.
 '''
 
-core_dict = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0}
-core_num = 8
+core_num = psutil.cpu_count()
+core_dict = {c:0 for c in range(1, core_num+1)}
 
 battery_state = "Charging"
 battery_capacity = "100"
@@ -155,6 +155,7 @@ class MainApp(MDApp):
     global stop_threads
 
     def build(self):
+        self.title = 'WSM'
         return Builder.load_file("main.kv")
 
     def on_start(self):
